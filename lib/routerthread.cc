@@ -367,7 +367,7 @@ inline void
 RouterThread::run_tasks(int ntasks)
 {
 #if CLICK_MINIOS
-    if(!_run_lock.attempt())
+    if(_master->paused() || !_run_lock.attempt())
         return;
 #endif
 
