@@ -189,11 +189,13 @@ router_stop(int n = MAX_ROUTERS)
 void
 router_suspend(int n = MAX_ROUTERS)
 {
+	master.suspend();
 }
 
 void
 router_resume(int n = MAX_ROUTERS)
 {
+	master.resume();
 }
 
 u_int
