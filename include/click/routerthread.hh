@@ -59,6 +59,10 @@ class RouterThread { public:
 
     void kill_router(Router *router);
 
+#ifdef CLICK_MINIOS
+    void fence();
+#endif
+
 #if HAVE_ADAPTIVE_SCHEDULER
     // min_cpu_share() and max_cpu_share() are expressed on a scale with
     // Task::MAX_UTILIZATION == 100%.
@@ -119,6 +123,10 @@ class RouterThread { public:
     volatile int _stop_flag;
 #if HAVE_TASK_HEAP
     Vector<task_heap_element> _task_heap;
+#endif
+
+#ifdef CLICK_MINIOS
+    SimpleSpinlock _run_lock;
 #endif
 
     TimerSet _timers;
